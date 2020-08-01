@@ -1,0 +1,3 @@
+function checkAction() {
+	return false;
+}

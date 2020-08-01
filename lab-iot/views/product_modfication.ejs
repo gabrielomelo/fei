@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Estoque/LAB IOT VIVO</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <header class="top">
+      <img id="headerLogo"
+           src="fei-logo.png" alt="LAB IOT FEI">
+    </header>
+    
+    	<nav>
+        <ul>
+          <li class="selected"><a href="index">Visualização de Estoque</a></li>
+          <li><a href="provider_registration">Cadastro Fornecedor</a></li>
+          <li><a href="product_registration">Cadastro Produto</a></li>
+          <li><a href="prod_manager">Alteração de Estoque</a></li>
+        </ul>
+      </nav>
+
+      <div id="container">
+    	<div id="tableContainer">
+      	<div id="tableRow">
+          <section id="main">
+            <span>Cadastro do Produto</span><br/>
+            <form id="alpha-form" name="product" action="product_reg" method="post">
+              <span>Código </span><input type="text" name="id" value="<%=product.id%>"><br/>
+              <span>Descrição </span><input type="text" name="description" maxlength="40" value="<%=product.description%>"><br/>
+              <span>Quantidade </span><input type="text" name="qty" value="<%=product.qty%>"><br/>
+              <span>Último Pedido </span><input type="date" name="last_order" value="<%=product.last_order_dt%>"><br/>
+              <span>Última Entrega </span><input type="date" name="last_delivery" value="<%=product.last_delivery_date%>"><br/>
+              <span>Valor Médio </span><input type="text" name="average_cost" value="<%=product.average_cost%>"><br/>
+              <span>Localização </span><input type="texy" name="localization" value="<%=product.localization%>"><br/>
+              <input type="submit" name="send_data"><br/>
+            </form>
+          </section>
+      	</div> <!-- tableRow -->
+    	</div> <!-- tableContainer -->
+    </div>
+    <footer>
+      &copy; 2018, FEI
+    </footer>
+  </body>
+</html>
+
+

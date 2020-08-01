@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Estoque/LAB IOT VIVO</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <header class="top">
+      <img id="headerLogo"
+           src="fei-logo.png" alt="LAB IOT FEI">
+    </header>
+    <nav>
+      <ul>
+        <li class="selected"><a href="index">Visualização de Estoque</a></li>
+        <li><a href="provider_registration">Cadastro Fornecedor</a></li>
+        <li><a href="product_registration">Cadastro Produto</a></li>
+        <li><a href="prod_manager">Alteração de Estoque</a></li>
+      </ul>
+    </nav>
+
+    <div id="container">
+    <div id="tableContainer">
+      <div id="tableRow">
+        <section id="main">
+          <!-- Provider search field -->
+          <form id="provider_query" method="get" action="provider_search">
+            <span>Procurar Fornecedor: </span><input type="text" name="name" placeholder="Nome do Fornecedor">
+            <button type="submit">Procurar</button>
+          </form>
+          <!-- Product search field -->
+          <form id="product_query" method="get" action="product_search">
+            <span>Procurar Produto: </span><input type="text" name="name" placeholder="Nome do Produto">
+            <button type="submit">Procurar</button>
+          </form>
+          <br/><br/>
+          <table>
+            <tbody>
+              <tr>
+                <td>Código</td>
+                <td>Nome</td>
+                <td>Descrição</td>
+                <td>Quantidade</td>
+                <td>Ultimo Pedido</td>
+                <td>Ultima Entrega</td>
+                <td>Valor Médio</td>
+                <td>Localização</td>
+                <td>Imagem</td>
+                <td></td><td></td>
+              </tr>
+
+              <% for(var i=0; products.length > i; i++){ %>    
+              <tr>
+                <td><%=products[i].id%></td>
+                <td><%=products[i].name%></td>
+                <td><%=products[i].description%></td>
+                <td><%=products[i].qty%></td>
+                <td><%=products[i].last_order_dt%></td>
+                <td><%=products[i].last_delivery_dt%></td>
+                <td><%=products[i].average_cost%></td>
+                <td><%=products[i].localization%></td>
+                <td><img src="<%=products[i].img_path%>" style="height:150px;max-width:100px;width: expression(this.width > 500 ? 500: true);"></td>
+                <td><a href="product_mod?name=<%=products[i].name%>">Alterar</a></td>
+                <td><a href="product_delete?name=<%=products[i].name%>">Deletar</a></td>
+              </tr>
+              <% } %>
+
+            </tbody>
+          </table>
+
+        </section>
+      </div> <!-- tableRow -->
+    </div> <!-- tableContainer -->
+    </div>
+    <footer>
+      &copy; 2018, FEI
+    </footer>
+  </body>
+</html>
+
+
+

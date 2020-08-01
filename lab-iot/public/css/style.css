@@ -1,0 +1,94 @@
+/**
+ * @author Gabriel Melo
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+div#container {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
+}
+
+body { 
+  background-color: #eaf1fc;
+  font-family: 'Open Sans', sans-serif;
+  margin:           0px;
+}
+
+header.top {
+  background-color: #7babf7;
+  margin: 10px 10px 0px 10px;
+  height:           200px;
+}
+
+div#tableContainer {
+	display: table;
+	border-spacing: 10px;
+}
+
+div#tableRow {
+	display: table-row;
+}
+
+section#main {
+  display: table-cell;
+  font-size:        105%;
+  padding:          15px;
+
+  vertical-align: top;
+}
+
+aside {
+  display: table-cell;
+  background-color: #efe5d0;
+  font-size:        105%;
+  padding:          15px;
+  vertical-align: top;
+}
+
+footer {
+  background-color: #7babf7;
+  color:            #ffffff;
+  text-align:       center;
+  padding:          15px;
+  margin: 0px 10px 10px 10px;
+  font-size:        90%;
+}
+
+a {
+  color:            #545b66;
+  text-decoration:  none;
+}
+
+nav {
+  background-color: #eaf1fc;
+  margin: 10px 10px 0px 10px;
+  color: #545b66;
+}
+
+table, th, td {
+   border: 1px solid black;
+   border-collapse: collapse;
+}
+
+nav ul {
+  margin: 0px;
+  list-style-type: none;
+  padding: 5px 0px 5px 0px;
+}
+
+nav ul li {
+  display: inline;
+  padding: 5px 10px 5px 10px;
+}
+
+nav ul li a:link, nav ul li a:visited {
+	color: #545b66;
+	border-bottom: none;
+	text-shadow: 1px 1px 3px #e2c2c2; 
+	text-transform: uppercase;
+}
