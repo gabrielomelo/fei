@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    tools:context=".MenuActivity">
+
+    <Button
+        android:id="@+id/btCadastroDispositivo"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="171dp"
+        android:onClick="btCadastroDispositivoOnClick"
+        android:text="Cadastrar Dispositivo" />
+
+    <Button
+        android:id="@+id/btCadastroColaborador"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:onClick="btCadastroColaboradorOnClick"
+        android:text="Cadastrar Colaborador" />
+
+    <Button
+        android:id="@+id/btAlteraDispositivo"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="170dp"
+        android:onClick="btAlteraDispositivoOnClick"
+        android:text="Alterar Dispositivo" />
+</RelativeLayout>
