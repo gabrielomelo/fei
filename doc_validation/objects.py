@@ -1,3 +1,7 @@
+import time
+from validate_docbr import CNPJ, CPF
+
+
 class Operator:
     def __init__(self, cpf_validator: CPF, cnpj_validator: CNPJ, dataset: list):
         self.cpf_validator = cpf_validator

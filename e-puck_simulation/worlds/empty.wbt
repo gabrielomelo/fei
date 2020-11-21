@@ -1,0 +1,40 @@
+#VRML_SIM R2020b utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation 0.5478733523173015 -0.6707323659585869 -0.49995288085598477 4.421521391645175
+  position 0.4875563672892429 1.4686032871431483 0.1558533107416829
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+CardboardBox {
+  translation -0.069666 0.0249804 0.0240518
+  rotation 8.281634361919115e-17 1 -1.1454761724449023e-17 -0.785395307179586
+  name "cardboard box(4)"
+  size 0.05 0.05 0.05
+}
+CardboardBox {
+  translation -0.366947 0.0249804 0.230334
+  rotation 8.281634361919115e-17 1 -1.1454761724449023e-17 -0.785395307179586
+  name "cardboard box(2)"
+  size 0.05 0.05 0.05
+  mass 0.025
+}
+CardboardBox {
+  translation 0.0922842 0.0249804 -0.0349623
+  rotation 4.43875e-09 1 -5.49981e-10 -0.244645307179586
+  name "cardboard box(3)"
+  size 0.05 0.05 0.05
+  mass 0.025
+}
+DEF roboto E-puck {
+  translation 0.0531989 -6.3933e-05 0.167383
+  rotation 0.002583419581626701 -0.9999938380554503 0.002376929615066832 -0.6144953071795864
+  controller "my_controller"
+  supervisor TRUE
+}

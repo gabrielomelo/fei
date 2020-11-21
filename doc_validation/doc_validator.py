@@ -2,7 +2,6 @@ import threading
 import argparse
 import traceback
 import math
-import time
 from validate_docbr import CNPJ, CPF
 from objects import Zookeeper, Operator
 
