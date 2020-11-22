@@ -1,7 +1,5 @@
-import time
-
-
 class CPF:
+
     @staticmethod
     def validate(cpf: str) -> str:
         v1 = 0
@@ -15,6 +13,7 @@ class CPF:
         return f'{v1}{v2}'
 
 class CNPJ:
+
     @staticmethod
     def validate(str_cnpj: str) -> str:
         cnpj = [int(d) for d in str_cnpj]
@@ -39,48 +38,29 @@ class CNPJ:
 
 
 class Operator:
-    def __init__(self, cpf_validator: CPF, cnpj_validator: CNPJ, dataset: list):
-        self.cpf_validator = cpf_validator
-        self.cnpj_validator = cnpj_validator
-        self.cpf_digits = []
-        self.cnpj_digits = []
-        self.dataset = dataset
-        self.completion = 0.0
 
-    def operate(self):
-        for i in range(0, len(self.dataset)):
-            if len(self.dataset[i]) == 9:
-                self.cpf_digits.append(self.cpf_validator.validate(self.dataset[i]))
-            elif len(self.dataset[i]) == 12:
-                self.cnpj_digits.append(self.cnpj_validator.validate(self.dataset[i]))
-            self.completion = (i+1)/len(self.dataset)
+    @staticmethod
+    def operate(dataset: list) -> object:
+        cpf_digits = []
+        cnpj_digits = []
 
-    def get_results(self) -> str:
-        return f'{str(self)} | Calculated CPF Digits: {len(self.cpf_digits)} | Calculated CNPJ Digits: {len(self.cnpj_digits)} | Total processed: {self.completion}'
+        for i in range(0, len(dataset)):
+            if len(dataset[i]) == 9:
+                cpf_digits.append(CPF.validate(dataset[i]))
+            elif len(dataset[i]) == 12:
+                cnpj_digits.append(CNPJ.validate(dataset[i]))
+        return len(cpf_digits), len(cnpj_digits)        
 
 
 class Zookeeper:
-    def __init__(self, operators: list):
-        self.operators = operators
-    
-    def show_statuses(self):
-        while not self.complete():
-            time.sleep(1)
-            for i in range(0, len(self.operators)):
-                print(f'Operator {i+1} - {self.operators[i].get_results()}')
-    
-    def complete(self):
-        for operator in self.operators:
-            if operator.completion < 1.0:
-                return False
-        return True
-    
-    def show_report(self):
+
+    @staticmethod    
+    def show_report(results):
         total_cpf_analyzed = 0
         total_cnpj_analyzed = 0
-        for operator in self.operators:
-            total_cnpj_analyzed += len(operator.cnpj_digits)
-            total_cpf_analyzed += len(operator.cpf_digits)
+        for result in results:
+            total_cnpj_analyzed += result[0]
+            total_cpf_analyzed += result[1]
         print(f'On this execution a total of {total_cnpj_analyzed} CNPJs has been analyzed')
         print(f'On this execution a total of {total_cpf_analyzed} CPFs has been analyzed')
         print(f'A total of {total_cpf_analyzed + total_cnpj_analyzed} document numbers has been analyzed')

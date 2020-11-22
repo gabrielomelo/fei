@@ -1,7 +1,7 @@
-import threading
 import argparse
-import traceback
 import math
+import time
+from multiprocessing import Pool
 from objects import Zookeeper, Operator, CNPJ, CPF
 
 
@@ -12,35 +12,31 @@ def load_dataset(file_path: str) -> list:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-jobs', '-j', type=int, help="Number of the jobs used in the dataset validation. Use values multiples by 2 or 1.", default=1)
-    parser.add_argument('-path', '-p', type=str, help="Dataset file path.")
+    parser.add_argument('--jobs', '-j', type=int, help="Number of the jobs used in the dataset validation. Use values multiples by 2 or 1.", default=1)
+    parser.add_argument('--path', '-p', type=str, help="Dataset file path.")
     args = parser.parse_args()
-    
-    cpf_validator = CPF()
-    cnpj_validator = CNPJ()
+
+    initial_time = time.time()
     
     dataset = load_dataset(args.path)
 
+    pool = Pool(processes=args.jobs)
+
     partition_size = math.floor(len(dataset)/args.jobs)
-
-    operators = [
-        Operator(
-            cpf_validator,
-            cnpj_validator,
-            dataset[((i-1)*partition_size):(i*partition_size)]
-            ) for i in range(1, args.jobs + 1)
-        ]
-
-    zookeeper = Zookeeper(operators)
+    partition_offset = len(dataset) - (partition_size * args.jobs)
     
-    operators_threads = [threading.Thread(target=operator.operate, daemon=True) for operator in operators]
-    
-    for thread in operators_threads:
-        thread.start()
-        
-    zookeeper.show_statuses()
+    partitions = []
 
-    for thread in operators_threads:
-        thread.join()
+    for i in range(1, args.jobs + 1):
+        if i == args.jobs:
+            partitions.append(dataset[((i-1)*partition_size):(i*partition_size) +  partition_offset])
+        else:
+            partitions.append(dataset[((i-1)*partition_size):(i*partition_size)])
 
-    zookeeper.show_report()
+    results = pool.map_async(Operator.operate, partitions).get()
+
+    pool.close()
+
+    Zookeeper.show_report(results)
+
+    print(f'Total Execution Time: {((time.time() - initial_time) * 1000)} miliseconds')
