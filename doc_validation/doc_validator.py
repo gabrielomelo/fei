@@ -39,4 +39,4 @@ if __name__ == "__main__":
 
     Zookeeper.show_report(results)
 
-    print(f'Total Execution Time: {((time.time() - initial_time) * 1000)} miliseconds')
+    print(f'Total Execution Time using {args.jobs} Processes: {((time.time() - initial_time) * 1000)} miliseconds')
